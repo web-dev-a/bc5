@@ -1,0 +1,121 @@
+stackbitVersion: ~0.2.39
+ssgName: hugo
+ssgVersion: 0.1.12
+buildCommand: ./ssg-build.sh
+publishDir: public
+staticDir: static
+uploadDir: images
+dataDir: data
+pagesDir: content
+pageLayoutKey: layout
+metadata:
+  title: My awesome list
+  description: A starter theme for create a list using stackbit
+  author: Fabien 'tungu' Dutaud
+  authorURL: 'https://tungu.me'
+  images:
+    small: images/myAwesomeList-256x192.png
+    large: images/myAwesomeList-1024x768.png
+stackbit_banner:
+  show_banner: false
+  name: my-awesome-list
+  create_url: 'https://app.stackbit.com/create?theme=my-awesome-list'
+  github_url: 'https://github.com/tunguskha/my-awesome-list'
+models:
+  config:
+    type: config
+    label: Config
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: Site title
+        required: true
+      - type: string
+        name: baseURL
+        label: Base URL
+        description: Hostname (and path) to the root
+        hidden: true
+      - type: object
+        name: params
+        label: Params
+        description: Site parameters
+        required: true
+        fields:
+          - type: string
+            name: logo
+            label: Logo
+            description: Your site name (logo)
+            required: true
+      - type: list
+        name: disableKinds
+        label: Disable Kinds
+        description: Enable disabling of all pages of the specified Kinds.
+        items:
+          type: enum
+          options:
+            - page
+            - home
+            - section
+            - taxonomy
+            - taxonomyTerm
+            - RSS
+            - sitemap
+            - robotsTXT
+            - '404'
+        hidden: true
+      - type: boolean
+        name: uglyURLs
+        label: Ugly URLs
+        description: >-
+          When enabled, creates URL of the form /filename.html instead of
+          /filename/.
+        hidden: true
+  home:
+    type: page
+    label: Home
+    template: home
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: The title of the page.
+        required: true
+      - type: string
+        name: description
+        label: Description
+        description: Baseline of your homepage
+  items:
+    type: data
+    file: items.json
+    label: Items
+    fields:
+      - type: list
+        name: item
+        label: Item
+        description: An item to be placed
+        items:
+          type: object
+          labelField: title
+          fields:
+            - type: image
+              name: image
+              label: Item image
+              required: true
+            - type: string
+              name: title
+              label: Title
+              required: true
+            - type: string
+              name: description
+              label: Description
+              required: true
+            - type: string
+              name: linkUrl
+              label: URL
+              widget: url
+              required: true
+            - type: string
+              name: link
+              label: Link title
+              required: true

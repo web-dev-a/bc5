@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>    
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google" content="notranslate" />
+        <meta name="theme-color" content="#08132E" />
+        <title>{{ .Site.Title }}</title>
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css?v=3.7">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v1.0.0/css/unicons.css">
+        <link rel="stylesheet" href="{{ (resources.Get "sass/main.scss" | resources.ToCSS (dict "indentWidth" 4 "outputStyle" "nested" "precision" 10 "targetPath" "assets/css/main.css")).Permalink }}">
+        
+    </head>
+    <body>
+        
+        {{ partial "header.html" . }}
+        
+        {{ block "content" . }}{{ end }}
+        
+        {{ partial "footer.html" . }}
+        <script src="https://cdn.jsdelivr.net/gh/tunguskha/Image-shadow@latest/assets/js/image-shadow.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+        <script src="{{ "assets/js/main.js" | relURL }}"></script>
+    </body> 
+</html>
